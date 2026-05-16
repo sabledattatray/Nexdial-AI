@@ -31,18 +31,28 @@ const bottomItems = [
 ];
 
 export default function Sidebar() {
-  const { activeTab, setActiveTab, metrics, agents, logout, adminEmail, adminName } = useStore();
+  const { activeTab, setActiveTab, metrics, agents, logout, adminEmail, adminName, isSidebarOpen, closeSidebar } = useStore();
   const [collapsed, setCollapsed] = useState(false);
   const activeCalls = metrics.activeCalls;
 
   return (
-    <motion.aside
-      animate={{ width: collapsed ? 64 : 240 }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
-      className="sidebar relative flex-shrink-0"
-      style={{ overflow: 'hidden' }}
-    >
-      {/* Logo */}
+    <>
+      {/* Mobile backdrop */}
+      {isSidebarOpen && (
+        <div 
+          onClick={closeSidebar}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', zIndex: 40 }}
+          className="md:hidden"
+        />
+      )}
+
+      <motion.aside
+        animate={{ width: collapsed ? 64 : 240 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}
+        className={`sidebar relative flex-shrink-0 ${isSidebarOpen ? 'open' : ''}`}
+        style={{ overflow: 'hidden' }}
+      >
+        {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b" style={{ borderColor: 'var(--border)', height: 60 }}>
         <div style={{
           width: 32, height: 32, borderRadius: 8, flexShrink: 0,
@@ -96,7 +106,7 @@ export default function Sidebar() {
           return (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => { setActiveTab(item.id); closeSidebar(); }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 10,
                 padding: collapsed ? '10px 16px' : '9px 12px',
@@ -160,7 +170,7 @@ export default function Sidebar() {
           return (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => { setActiveTab(item.id); closeSidebar(); }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 10,
                 padding: '8px 12px', borderRadius: 8, border: 'none', cursor: 'pointer', marginBottom: 2,
@@ -239,5 +249,6 @@ export default function Sidebar() {
         </div>
       </div>
     </motion.aside>
+  </>
   );
 }

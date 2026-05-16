@@ -22,7 +22,7 @@ const PAGE_TITLES: Record<string, string> = {
 };
 
 export default function TopBar() {
-  const { activeTab, metrics, theme, toggleTheme } = useStore();
+  const { activeTab, metrics, theme, toggleTheme, toggleSidebar } = useStore();
   const [showSearch, setShowSearch] = useState(false);
   const [notifications] = useState([
     { id: 1, text: '3 callbacks scheduled for next 30 min', type: 'info', time: '2m ago' },
@@ -40,6 +40,14 @@ export default function TopBar() {
     }}>
       {/* Left */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <button 
+          onClick={toggleSidebar} 
+          className="topbar-btn md:hidden" 
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Toggle Menu"
+        >
+          <Command size={15} color="var(--text-secondary)" />
+        </button>
         <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>
           {PAGE_TITLES[activeTab] || 'NexDial AI'}
         </h2>
@@ -51,7 +59,7 @@ export default function TopBar() {
       </div>
 
       {/* Center: Search */}
-      <div style={{ flex: 1, maxWidth: 400, margin: '0 20px' }}>
+      <div className="hidden sm:block" style={{ flex: 1, maxWidth: 400, margin: '0 20px' }}>
         <div style={{ position: 'relative' }}>
           <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
@@ -70,7 +78,7 @@ export default function TopBar() {
       {/* Right */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         {/* Live stats */}
-        <div style={{ display: 'flex', gap: 12, padding: '4px 12px', background: 'rgba(88,166,255,0.06)', borderRadius: 8, border: '1px solid rgba(88,166,255,0.15)', fontSize: 11 }}>
+        <div className="hidden sm:flex" style={{ gap: 12, padding: '4px 12px', background: 'rgba(88,166,255,0.06)', borderRadius: 8, border: '1px solid rgba(88,166,255,0.15)', fontSize: 11 }}>
           <span style={{ color: 'var(--accent-green)' }}>● {metrics.activeCalls} live</span>
           <span style={{ color: 'var(--text-muted)' }}>·</span>
           <span style={{ color: 'var(--text-secondary)' }}>{metrics.activeAgents + metrics.busyAgents} agents</span>

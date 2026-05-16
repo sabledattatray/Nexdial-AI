@@ -21,6 +21,9 @@ interface AppState {
   setActiveTab: (tab: string) => void;
   theme: 'dark' | 'light';
   toggleTheme: () => void;
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+  closeSidebar: () => void;
 
   // Agents
   agents: Agent[];
@@ -137,6 +140,9 @@ export const useStore = create<AppState>()(
   setActiveTab: (tab) => set({ activeTab: tab }),
   theme: 'dark',
   toggleTheme: () => set((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
+  isSidebarOpen: false,
+  toggleSidebar: () => set((s) => ({ isSidebarOpen: !s.isSidebarOpen })),
+  closeSidebar: () => set({ isSidebarOpen: false }),
 
   agents: mockAgents,
   setAgents: (agents) => set({ agents }),
