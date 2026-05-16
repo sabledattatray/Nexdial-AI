@@ -188,13 +188,13 @@ function LoginScreenContent() {
 
       {/* Hero Section */}
       <section id="hero" style={{ position: 'relative', padding: '60px 32px', minHeight: 'calc(100vh - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        {/* Professional Call Center Background Image at 100% Full Opacity */}
+        {/* Professional Call Center Background Image (3-4 Agents Wearing Headsets Taking Calls) */}
         <div style={{
           position: 'absolute',
           inset: 0,
           zIndex: 0,
           backgroundColor: theme === 'dark' ? '#080a0f' : '#f8fafc',
-          backgroundImage: `url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000&auto=format&fit=crop')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2000&auto=format&fit=crop')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: theme === 'dark' ? 'brightness(0.85) contrast(1.05)' : 'brightness(1) contrast(1.02)',
