@@ -187,8 +187,30 @@ function LoginScreenContent() {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" style={{ padding: '60px 32px', minHeight: 'calc(100vh - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ maxWidth: 1280, width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 64, alignItems: 'center' }}>
+      <section id="hero" style={{ position: 'relative', padding: '60px 32px', minHeight: 'calc(100vh - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        {/* Professional Call Center Background Image with Dynamic Gradient Overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          backgroundImage: `url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000&auto=format&fit=crop')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: theme === 'dark' ? 'brightness(0.35) grayscale(0.3)' : 'brightness(0.85) grayscale(0.15)',
+          opacity: theme === 'dark' ? 0.4 : 0.22,
+          transition: 'all 0.5s ease'
+        }} />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          background: theme === 'dark' 
+            ? 'linear-gradient(180deg, rgba(8,10,15,0.75) 0%, rgba(8,10,15,0.95) 100%)' 
+            : 'linear-gradient(180deg, rgba(248,250,252,0.75) 0%, rgba(248,250,252,0.95) 100%)',
+          transition: 'all 0.5s ease'
+        }} />
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1280, width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 64, alignItems: 'center' }}>
           
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }}>
             <span className="badge badge-purple" style={{ marginBottom: 16, fontSize: 11 }}>🚀 NEXT-GEN TELEPHONY & AI COPILOT</span>
