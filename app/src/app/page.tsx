@@ -216,10 +216,10 @@ function LoginScreenContent() {
           
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }}>
             <span className="badge badge-purple" style={{ marginBottom: 16, fontSize: 11 }}>🚀 NEXT-GEN TELEPHONY & AI COPILOT</span>
-            <h1 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 20 }}>
+            <h1 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: theme === 'light' ? '#000000' : 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 20 }}>
               Surgical AI Telephony for Enterprise Sales Teams.
             </h1>
-            <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 32 }}>
+            <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: theme === 'light' ? '#000000' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 600 : 400, lineHeight: 1.6, marginBottom: 32 }}>
               Scale your outbound campaigns with predictive pacing algorithms, real-time AI sentiment analysis, and ultra-low latency WebRTC integrations.
             </p>
 
@@ -230,7 +230,7 @@ function LoginScreenContent() {
                 'Omnichannel CRM with automated disposition tagging',
                 'Sub-400ms AI Voice Copilot & Real-Time Sentiment Scoring',
               ].map((feat, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: 'var(--text-primary)', fontWeight: 500 }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: theme === 'light' ? '#000000' : 'var(--text-primary)', fontWeight: theme === 'light' ? 700 : 500 }}>
                   <CheckCircle size={18} color="var(--accent-green)" style={{ flexShrink: 0 }} />
                   <span>{feat}</span>
                 </div>
