@@ -393,7 +393,7 @@ function LoginScreenContent() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, marginBottom: 48 }}>
             {[
               { title: 'Predictive AI Dialer', desc: 'Intelligent pacing algorithms adjust dialing rates based on live agent availability and historical answer rates, eliminating idle time.', icon: Phone },
               { title: 'Live Monitor & Barging', desc: 'Supervisors can listen in real-time, whisper coaching advice directly to agents, or barge into active calls to close high-value deals.', icon: Users },
@@ -408,6 +408,14 @@ function LoginScreenContent() {
                 <p style={{ fontSize: 14, color: theme === 'light' ? '#000000' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 600 : 400, lineHeight: 1.6 }}>{srv.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <a href="https://dattasable.com/services" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
+              <button className="btn-primary" style={{ padding: '14px 32px', fontSize: 15, fontWeight: 700, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', boxShadow: '0 12px 32px rgba(88,166,255,0.25)', border: 'none' }}>
+                Explore More Enterprise Services <ArrowRight size={18} />
+              </button>
+            </a>
           </div>
         </div>
       </section>
