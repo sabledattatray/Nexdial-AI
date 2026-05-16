@@ -6,6 +6,8 @@ import TopBar from '@/components/TopBar';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { X } from 'lucide-react';
+import { GoogleOAuthProvider, useGoogleOneTapLogin, GoogleLogin } from '@react-oauth/google';
 
 // Lazy load heavy components
 const Dashboard = dynamic(() => import('@/components/Dashboard'), { ssr: false });
@@ -102,10 +104,21 @@ const componentMap: Record<string, React.ComponentType> = {
   billing: BillingPanel,
 };
 
-function LoginScreen() {
+function LoginScreenContent() {
   const { login, theme } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // Official Google One Tap Auto Login Hook
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      toast.success('Successfully logged in with Google One Tap!');
+      login();
+    },
+    onError: () => {
+      console.log('Google One Tap Login Failed');
+    },
+  });
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,11 +159,39 @@ function LoginScreen() {
           </button>
         </form>
 
+        <div style={{ display: 'flex', alignItems: 'center', marginBlock: 20 }}>
+          <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+          <span style={{ marginInline: 12, fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>OR</span>
+          <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+        </div>
+
+        {/* Official Google Login Button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              toast.success('Successfully logged in with Google!');
+              login();
+            }}
+            onError={() => {
+              toast.error('Google Login Failed');
+            }}
+            theme={theme === 'light' ? 'outline' : 'filled_black'}
+          />
+        </div>
+
         <div style={{ padding: '12px 16px', background: 'rgba(88,166,255,0.08)', borderRadius: 8, marginTop: 24, border: '1px solid rgba(88,166,255,0.15)', fontSize: 11, color: 'var(--text-secondary)', textAlign: 'center', lineHeight: 1.5 }}>
-          💡 <span style={{ fontWeight: 600, color: 'var(--accent-blue)' }}>Demo Mode Active</span>: Enter any work email and password to instantly access the live platform.
+          💡 <span style={{ fontWeight: 600, color: 'var(--accent-blue)' }}>Demo Mode Active</span>: Enter any work email and password or use Google One Tap to instantly access the live platform.
         </div>
       </motion.div>
     </div>
+  );
+}
+
+function LoginScreen() {
+  return (
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "707439992057-j87plivvk29u7nq35l1j7sqdraoqhv5u.apps.googleusercontent.com"}>
+      <LoginScreenContent />
+    </GoogleOAuthProvider>
   );
 }
 

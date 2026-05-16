@@ -6,11 +6,15 @@ import { Agent, Call, Campaign, Lead, DashboardMetrics, QueueEntry } from './typ
 import { mockAgents, mockCalls, mockCampaigns, mockLeads, mockDashboard, mockQueue } from './mock-data';
 
 interface AppState {
-  // Authentication
+  // Authentication & Admin Profile
   isAuthenticated: boolean;
   setIsAuthenticated: (val: boolean) => void;
   login: () => void;
   logout: () => void;
+  adminEmail: string;
+  setAdminEmail: (email: string) => void;
+  adminName: string;
+  setAdminName: (name: string) => void;
 
   // Navigation
   activeTab: string;
@@ -124,6 +128,10 @@ export const useStore = create<AppState>()(
   setIsAuthenticated: (val) => set({ isAuthenticated: val }),
   login: () => set({ isAuthenticated: true }),
   logout: () => set({ isAuthenticated: false }),
+  adminEmail: 'sabledattatray@gmail.com',
+  setAdminEmail: (email) => set({ adminEmail: email }),
+  adminName: 'Datta Sable',
+  setAdminName: (name) => set({ adminName: name }),
 
   activeTab: 'dashboard',
   setActiveTab: (tab) => set({ activeTab: tab }),

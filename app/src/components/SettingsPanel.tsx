@@ -1,10 +1,50 @@
 'use client';
-import { useState } from 'react';
-import { Settings, Shield, Bell, Key, Cpu, Phone, Layout, ChevronLeft, Save } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Settings, Shield, Bell, Key, Cpu, Phone, Layout, ChevronLeft, Save, Eye, EyeOff, Lock, CheckCircle, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useStore } from '@/lib/store';
 
 export default function SettingsPanel() {
+  const { adminEmail, setAdminEmail, adminName, setAdminName } = useStore();
   const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Password change state (hoisted to top level)
+  const [currentPw, setCurrentPw] = useState('');
+  const [newPw, setNewPw] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const strength = useMemo(() => {
+    let score = 0;
+    if (newPw.length >= 8) score++;
+    if (newPw.length >= 12) score++;
+    if (/[A-Z]/.test(newPw)) score++;
+    if (/[0-9]/.test(newPw)) score++;
+    if (/[^A-Za-z0-9]/.test(newPw)) score++;
+    return score;
+  }, [newPw]);
+  const strengthLabel = ['', 'Weak', 'Fair', 'Good', 'Strong', 'Excellent'][strength] || '';
+  const strengthColor = ['', '#ff7b72', '#f0883e', '#d29922', '#58a6ff', '#3fb950'][strength] || '';
+  const passwordsMatch = confirmPw.length > 0 && newPw === confirmPw;
+  const passwordsMismatch = confirmPw.length > 0 && newPw !== confirmPw;
+
+  const handlePasswordChange = () => {
+    if (!currentPw) { toast.error('Enter your current password'); return; }
+    if (newPw.length < 8) { toast.error('Password must be at least 8 characters'); return; }
+    if (strength < 3) { toast.error('Password is too weak — add uppercase, numbers, or symbols'); return; }
+    if (newPw !== confirmPw) { toast.error('Passwords do not match'); return; }
+    toast.success('Admin password updated successfully!');
+    setCurrentPw(''); setNewPw(''); setConfirmPw('');
+  };
+
+  const pwFieldStyle = { position: 'relative' as const };
+  const toggleBtnStyle = {
+    position: 'absolute' as const, right: 10, top: '50%', transform: 'translateY(-50%)',
+    background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: 4,
+    display: 'flex', alignItems: 'center',
+  };
 
   const sections = [
     { id: 'General', icon: Layout, desc: 'Workspace name, timezone, and branding.' },
@@ -37,6 +77,14 @@ export default function SettingsPanel() {
               <div>
                 <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>WORKSPACE NAME</label>
                 <input type="text" className="input-field" defaultValue="NexDial Enterprise" required />
+              </div>
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>ADMIN NAME</label>
+                <input type="text" className="input-field" value={adminName} onChange={e => setAdminName(e.target.value)} required />
+              </div>
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>ADMIN EMAIL ID</label>
+                <input type="email" className="input-field" value={adminEmail} onChange={e => setAdminEmail(e.target.value)} required />
               </div>
               <div>
                 <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>PRIMARY TIMEZONE</label>
@@ -110,20 +158,70 @@ export default function SettingsPanel() {
             </div>
           )}
           {activeSection === 'Security' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {/* Password Change Section */}
+              <div style={{ padding: 16, background: 'rgba(88,166,255,0.06)', borderRadius: 10, border: '1px solid rgba(88,166,255,0.15)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                <Lock size={16} color="var(--accent-blue)" />
+                <span style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                  <strong style={{ color: 'var(--accent-blue)' }}>Change Admin Password</strong> — Use a strong, unique password with at least 8 characters including uppercase, numbers, and special characters.
+                </span>
+              </div>
+
               <div>
-                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>AUTHENTICATION</label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <input type="checkbox" defaultChecked /> <span style={{ fontSize: 13 }}>Enforce Two-Factor Authentication (2FA) for all agents</span>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>CURRENT PASSWORD</label>
+                <div style={pwFieldStyle}>
+                  <input type={showCurrent ? 'text' : 'password'} className="input-field" placeholder="Enter current password" value={currentPw} onChange={e => setCurrentPw(e.target.value)} style={{ paddingRight: 40 }} />
+                  <button type="button" style={toggleBtnStyle} onClick={() => setShowCurrent(!showCurrent)}>{showCurrent ? <EyeOff size={15} /> : <Eye size={15} />}</button>
                 </div>
               </div>
+
               <div>
-                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>SESSION TIMEOUT</label>
-                <select className="input-field" defaultValue="8h">
-                  <option value="1h">1 Hour</option>
-                  <option value="8h">8 Hours</option>
-                  <option value="24h">24 Hours</option>
-                </select>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>NEW PASSWORD</label>
+                <div style={pwFieldStyle}>
+                  <input type={showNew ? 'text' : 'password'} className="input-field" placeholder="Enter new password" value={newPw} onChange={e => setNewPw(e.target.value)} style={{ paddingRight: 40 }} />
+                  <button type="button" style={toggleBtnStyle} onClick={() => setShowNew(!showNew)}>{showNew ? <EyeOff size={15} /> : <Eye size={15} />}</button>
+                </div>
+                {newPw.length > 0 && (
+                  <div style={{ marginTop: 8 }}>
+                    <div style={{ display: 'flex', gap: 4, marginBottom: 4 }}>
+                      {[1,2,3,4,5].map(i => (
+                        <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= strength ? strengthColor : 'rgba(48,54,61,0.6)', transition: 'background 0.3s' }} />
+                      ))}
+                    </div>
+                    <div style={{ fontSize: 11, color: strengthColor, fontWeight: 500 }}>{strengthLabel}</div>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>CONFIRM NEW PASSWORD</label>
+                <div style={pwFieldStyle}>
+                  <input type={showConfirm ? 'text' : 'password'} className="input-field" placeholder="Re-enter new password" value={confirmPw} onChange={e => setConfirmPw(e.target.value)} style={{ paddingRight: 40 }} />
+                  <button type="button" style={toggleBtnStyle} onClick={() => setShowConfirm(!showConfirm)}>{showConfirm ? <EyeOff size={15} /> : <Eye size={15} />}</button>
+                </div>
+                {passwordsMatch && <div style={{ fontSize: 11, color: 'var(--accent-green)', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle size={12} /> Passwords match</div>}
+                {passwordsMismatch && <div style={{ fontSize: 11, color: 'var(--accent-red)', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}><AlertTriangle size={12} /> Passwords do not match</div>}
+              </div>
+
+              <button type="button" className="btn-primary" onClick={handlePasswordChange} style={{ width: 'fit-content', padding: '10px 24px', fontSize: 13, marginTop: 4 }}>
+                <Lock size={14} /> Update Password
+              </button>
+
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: 20, marginTop: 4 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 12, display: 'block' }}>ADDITIONAL SECURITY</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <input type="checkbox" defaultChecked /> <span style={{ fontSize: 13 }}>Enforce Two-Factor Authentication (2FA) for all agents</span>
+                  </div>
+                  <div>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>SESSION TIMEOUT</label>
+                    <select className="input-field" defaultValue="8h">
+                      <option value="1h">1 Hour</option>
+                      <option value="8h">8 Hours</option>
+                      <option value="24h">24 Hours</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           )}

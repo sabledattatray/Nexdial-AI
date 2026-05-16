@@ -31,7 +31,7 @@ const bottomItems = [
 ];
 
 export default function Sidebar() {
-  const { activeTab, setActiveTab, metrics, agents, logout } = useStore();
+  const { activeTab, setActiveTab, metrics, agents, logout, adminEmail, adminName } = useStore();
   const [collapsed, setCollapsed] = useState(false);
   const activeCalls = metrics.activeCalls;
 
@@ -199,10 +199,11 @@ export default function Sidebar() {
                   background: 'linear-gradient(135deg, #a371f7, #58a6ff)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 11, fontWeight: 700, color: 'white',
-                }}>SA</div>
+                }}>{adminName.split(' ').map(n => n[0]).join('')}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-primary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Super Admin</div>
-                  <div style={{ fontSize: 10, color: 'var(--accent-green)', display: 'flex', alignItems: 'center', gap: 3 }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-primary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{adminName}</div>
+                  <div style={{ fontSize: 10, color: 'var(--text-muted)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }} title={adminEmail}>{adminEmail}</div>
+                  <div style={{ fontSize: 10, color: 'var(--accent-green)', display: 'flex', alignItems: 'center', gap: 3, marginTop: 2 }}>
                     <span className="live-indicator" style={{ width: 5, height: 5 }} />Online
                   </div>
                 </div>
