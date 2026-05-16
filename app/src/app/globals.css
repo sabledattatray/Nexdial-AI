@@ -757,7 +757,7 @@ select option {
 .responsive-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 .responsive-grid-2 {
   display: grid;
@@ -771,9 +771,12 @@ select option {
 }
 .responsive-grid-leads {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr;
   height: 100%;
   overflow: hidden;
+}
+.responsive-grid-leads.has-panel {
+  grid-template-columns: 1fr 380px;
 }
 
 /* Responsive Overrides */
