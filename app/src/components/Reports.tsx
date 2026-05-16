@@ -134,12 +134,12 @@ export default function Reports() {
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
+      <div className="mobile-p-4" style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
 
         {activeReport === 'overview' && (
           <div>
             {/* KPI Summary */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 20 }}>
+            <div className="responsive-grid-5" style={{ marginBottom: 20 }}>
               {[
                 { label: 'Total Calls', value: metrics.totalCalls.toLocaleString(), icon: Phone, color: '88,166,255', change: '+12%' },
                 { label: 'Answered', value: metrics.answeredCalls.toLocaleString(), icon: Phone, color: '63,185,80', change: '+5%' },
@@ -158,7 +158,7 @@ export default function Reports() {
             </div>
 
             {/* Charts */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+            <div className="responsive-grid-2" style={{ marginBottom: 20 }}>
               <div className="glass-card" style={{ padding: 20 }}>
                 <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 14 }}>Calls & Conversions (Hourly)</div>
                 <ResponsiveContainer width="100%" height={200}>
@@ -205,7 +205,8 @@ export default function Reports() {
               </button>
             </div>
             <div className="glass-card" style={{ overflow: 'auto' }}>
-              <table className="data-table">
+              <div className="table-wrapper">
+                <table className="data-table">
                 <thead>
                   <tr>
                     <th>Agent</th><th>Calls Today</th><th>Talk Time</th>
@@ -249,6 +250,7 @@ export default function Reports() {
                   })}
                 </tbody>
               </table>
+              </div>
             </div>
 
             <div className="glass-card" style={{ padding: 20, marginTop: 16 }}>
@@ -275,7 +277,8 @@ export default function Reports() {
               </button>
             </div>
             <div className="glass-card" style={{ overflow: 'auto' }}>
-              <table className="data-table">
+              <div className="table-wrapper">
+                <table className="data-table">
                 <thead>
                   <tr><th>Disposition</th><th>Count</th><th>Percentage</th><th>Revenue</th></tr>
                 </thead>
@@ -297,6 +300,7 @@ export default function Reports() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         )}
@@ -313,7 +317,8 @@ export default function Reports() {
               </button>
             </div>
             <div className="glass-card" style={{ overflow: 'auto' }}>
-              <table className="data-table">
+              <div className="table-wrapper">
+                <table className="data-table">
                 <thead>
                   <tr>
                     <th>Call ID</th><th>Agent</th><th>Lead / Phone</th><th>Direction</th>
@@ -338,13 +343,14 @@ export default function Reports() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         )}
 
         {activeReport === 'financial' && (
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 20 }}>
+            <div className="responsive-grid-3" style={{ marginBottom: 20 }}>
               {[
                 { label: 'Revenue Today', value: formatCurrency(metrics.revenue), change: '+18%', color: 'green' },
                 { label: 'Revenue This Week', value: formatCurrency(metrics.revenue * 5.2), change: '+12%', color: 'green' },
@@ -389,7 +395,8 @@ export default function Reports() {
               </button>
             </div>
             <div className="glass-card" style={{ overflow: 'auto' }}>
-              <table className="data-table">
+              <div className="table-wrapper">
+                <table className="data-table">
                 <thead>
                   <tr><th>Campaign</th><th>Type</th><th>Status</th><th>Total Leads</th><th>Contacted</th><th>Answered</th><th>Converted</th><th>CVR</th><th>Progress</th></tr>
                 </thead>
@@ -416,6 +423,7 @@ export default function Reports() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         )}

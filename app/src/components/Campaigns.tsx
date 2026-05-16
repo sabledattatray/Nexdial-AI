@@ -157,7 +157,7 @@ export default function Campaigns() {
   };
 
   return (
-    <div style={{ padding: '24px', overflowY: 'auto', height: '100%' }}>
+    <div className="mobile-p-4" style={{ padding: '24px', overflowY: 'auto', height: '100%' }}>
       {showCreate && <CreateCampaignModal onClose={() => setShowCreate(false)} onSave={handleSave} />}
 
       {/* Header */}
@@ -174,7 +174,7 @@ export default function Campaigns() {
       </div>
 
       {/* Stats Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 20 }}>
+      <div className="responsive-grid-4" style={{ marginBottom: 20 }}>
         {[
           { label: 'Total Leads', value: campaigns.reduce((a, c) => a + c.totalLeads, 0).toLocaleString(), icon: Users, color: '88,166,255' },
           { label: 'Calls Made', value: campaigns.reduce((a, c) => a + c.answeredCalls, 0).toLocaleString(), icon: Phone, color: '63,185,80' },
@@ -250,7 +250,7 @@ export default function Campaigns() {
               </div>
 
               {/* Stats Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12, marginBottom: 14 }}>
+              <div className="responsive-grid-6" style={{ marginBottom: 14 }}>
                 {[
                   { label: 'Total Leads', value: camp.totalLeads.toLocaleString() },
                   { label: 'Contacted', value: camp.contactedLeads.toLocaleString() },

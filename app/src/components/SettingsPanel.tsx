@@ -63,7 +63,7 @@ export default function SettingsPanel() {
 
   if (activeSection) {
     return (
-      <div style={{ padding: 24, height: '100%', overflowY: 'auto' }}>
+      <div className="mobile-p-4" style={{ padding: 24, height: '100%', overflowY: 'auto' }}>
         <button onClick={() => setActiveSection(null)} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', marginBottom: 20, fontSize: 13, fontWeight: 500 }}>
           <ChevronLeft size={16} /> Back to Settings
         </button>
@@ -258,11 +258,11 @@ export default function SettingsPanel() {
   }
 
   return (
-    <div style={{ padding: 24, height: '100%', overflowY: 'auto' }}>
+    <div className="mobile-p-4" style={{ padding: 24, height: '100%', overflowY: 'auto' }}>
       <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Platform Settings</h1>
       <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 24 }}>Manage your workspace preferences, telephony routing, and AI models.</div>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}>
         {sections.map(section => {
           const Icon = section.icon;
           return (

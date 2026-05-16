@@ -727,6 +727,7 @@ select option {
     -webkit-overflow-scrolling: touch;
   }
   .modal-box {
+    width: 95vw !important;
     max-width: 95vw !important;
     padding: 16px !important;
   }
@@ -734,5 +735,103 @@ select option {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+}
+
+/* Responsive Grid Classes */
+.responsive-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.responsive-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.responsive-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.responsive-grid-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 340px;
+  gap: 16px;
+}
+.responsive-grid-leads {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .responsive-grid-charts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .responsive-grid-5, .responsive-grid-4, .responsive-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .responsive-grid-leads {
+    grid-template-columns: 1fr;
+  }
+  .responsive-grid-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-grid-5, .responsive-grid-4, .responsive-grid-6, .responsive-grid-3, .responsive-grid-2, .responsive-grid-charts {
+    grid-template-columns: 1fr !important;
+  }
+  .responsive-grid-leads {
+    grid-template-columns: 1fr !important;
+  }
+  /* Mobile lead panel overlay */
+  .mobile-lead-panel {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    border-left: none !important;
+  }
+  /* Fix padding and overflow on mobile containers */
+  .mobile-p-4 {
+    padding: 16px !important;
+  }
+  .mobile-login-card {
+    padding: 24px !important;
+  }
+  /* Make all table wrappers horizontally scrollable */
+  .glass-card {
+    max-width: 100vw;
+  }
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-grid-5, .responsive-grid-4, .responsive-grid-6, .responsive-grid-3, .responsive-grid-2, .responsive-grid-charts {
+    grid-template-columns: 1fr !important;
   }
 }

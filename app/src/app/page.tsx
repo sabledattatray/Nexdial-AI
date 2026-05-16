@@ -131,8 +131,8 @@ function LoginScreenContent() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', position: 'fixed', inset: 0, zIndex: 9999 }} className={`grid-bg ${theme === 'light' ? 'light' : ''}`}>
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="glass-card" style={{ width: 420, padding: 32, border: '1px solid rgba(88,166,255,0.2)', boxShadow: '0 24px 64px rgba(0,0,0,0.4)', background: 'var(--bg-card)' }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', position: 'fixed', inset: 0, zIndex: 9999, padding: 16 }} className={`grid-bg ${theme === 'light' ? 'light' : ''}`}>
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="glass-card mobile-login-card" style={{ width: '100%', maxWidth: 420, padding: 32, border: '1px solid rgba(88,166,255,0.2)', boxShadow: '0 24px 64px rgba(0,0,0,0.4)', background: 'var(--bg-card)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg, #a371f7, #58a6ff)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'white', fontWeight: 800, fontSize: 22 }}>
             N

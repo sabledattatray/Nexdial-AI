@@ -222,7 +222,7 @@ export default function LeadsAndCRM() {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: selectedLead ? '1fr 380px' : '1fr', height: '100%', overflow: 'hidden' }}>
+    <div className={`responsive-grid-leads ${selectedLead ? 'has-panel' : ''}`}>
       <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {/* Header */}
         <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border)', background: 'var(--bg-secondary)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -331,6 +331,7 @@ export default function LeadsAndCRM() {
         {selectedLead && (
           <motion.div
             initial={{ x: 380 }} animate={{ x: 0 }} exit={{ x: 380 }}
+            className="mobile-lead-panel"
             style={{ borderLeft: '1px solid var(--border)', background: 'var(--bg-secondary)', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
           >
             <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

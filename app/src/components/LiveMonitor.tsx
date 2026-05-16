@@ -28,7 +28,7 @@ export default function LiveMonitor() {
   const activeCalls = calls.filter(c => c.status === 'connected').slice(0, 8);
 
   return (
-    <div style={{ padding: 24, overflowY: 'auto', height: '100%' }}>
+    <div className="mobile-p-4" style={{ padding: 24, overflowY: 'auto', height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
         <Radio size={18} color="var(--accent-green)" />
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Live Monitor</h1>
@@ -37,7 +37,7 @@ export default function LiveMonitor() {
       </div>
 
       {/* Live Metrics */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 20 }}>
+      <div className="responsive-grid-5" style={{ marginBottom: 20 }}>
         {[
           { label: 'Live Calls', value: metrics.activeCalls, color: '63,185,80', pulse: true },
           { label: 'In Queue', value: queue.length, color: '240,136,62' },
@@ -76,7 +76,8 @@ export default function LiveMonitor() {
           <span style={{ fontSize: 14, fontWeight: 600 }}>Active Calls</span>
           <span className="badge badge-green" style={{ fontSize: 10 }}>{metrics.activeCalls} LIVE</span>
         </div>
-        <table className="data-table">
+        <div className="table-wrapper">
+          <table className="data-table">
           <thead>
             <tr><th>Agent</th><th>Lead / Phone</th><th>Campaign</th><th>Duration</th><th>Actions</th></tr>
           </thead>
@@ -108,35 +109,38 @@ export default function LiveMonitor() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Queue */}
-      <div className="glass-card">
+      <div className="glass-card" style={{ overflow: 'auto' }}>
         <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: 14, fontWeight: 600 }}>Call Queue</span>
           <span className="badge badge-orange" style={{ fontSize: 10 }}>{queue.length}</span>
         </div>
-        <table className="data-table">
-          <thead>
-            <tr><th>Caller</th><th>Phone</th><th>Wait Time</th><th>Priority</th><th>Skill</th><th>Action</th></tr>
-          </thead>
-          <tbody>
-            {queue.map(item => (
-              <tr key={item.id}>
-                <td style={{ fontWeight: 500, fontSize: 12 }}>{item.callerName}</td>
-                <td style={{ fontFamily: 'monospace', fontSize: 11 }}>{item.phone}</td>
-                <td>
-                  <span style={{ fontFamily: 'monospace', fontSize: 12, color: item.waitTime > 30 ? 'var(--accent-red)' : 'var(--accent-orange)' }}>
-                    {item.waitTime}s
-                  </span>
-                </td>
-                <td><span className={`badge badge-${item.priority === 'high' ? 'red' : item.priority === 'medium' ? 'orange' : 'gray'}`} style={{ fontSize: 10 }}>{item.priority}</span></td>
-                <td style={{ fontSize: 11, color: 'var(--text-muted)' }}>{item.skill || 'general'}</td>
-                <td><button style={{ padding: '3px 10px', borderRadius: 6, background: 'rgba(63,185,80,0.1)', border: 'none', color: 'var(--accent-green)', cursor: 'pointer', fontSize: 11 }}>Answer</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="data-table">
+            <thead>
+              <tr><th>Caller</th><th>Phone</th><th>Wait Time</th><th>Priority</th><th>Skill</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              {queue.map(item => (
+                <tr key={item.id}>
+                  <td style={{ fontWeight: 500, fontSize: 12 }}>{item.callerName}</td>
+                  <td style={{ fontFamily: 'monospace', fontSize: 11 }}>{item.phone}</td>
+                  <td>
+                    <span style={{ fontFamily: 'monospace', fontSize: 12, color: item.waitTime > 30 ? 'var(--accent-red)' : 'var(--accent-orange)' }}>
+                      {item.waitTime}s
+                    </span>
+                  </td>
+                  <td><span className={`badge badge-${item.priority === 'high' ? 'red' : item.priority === 'medium' ? 'orange' : 'gray'}`} style={{ fontSize: 10 }}>{item.priority}</span></td>
+                  <td style={{ fontSize: 11, color: 'var(--text-muted)' }}>{item.skill || 'general'}</td>
+                  <td><button style={{ padding: '3px 10px', borderRadius: 6, background: 'rgba(63,185,80,0.1)', border: 'none', color: 'var(--accent-green)', cursor: 'pointer', fontSize: 11 }}>Answer</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

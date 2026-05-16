@@ -96,7 +96,7 @@ export default function Dashboard() {
   const recentCalls = calls.slice(0, 6);
 
   return (
-    <div style={{ padding: '24px', overflowY: 'auto', height: '100%' }}>
+    <div className="mobile-p-4" style={{ padding: '24px', overflowY: 'auto', height: '100%' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
         <div>
@@ -131,7 +131,7 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 340px', gap: 16, marginBottom: 20 }}>
+      <div className="responsive-grid-charts" style={{ marginBottom: 20 }}>
         {/* Hourly Calls */}
         <div className="glass-card" style={{ padding: 20 }}>
           <div className="section-header">
@@ -206,7 +206,7 @@ export default function Dashboard() {
       </div>
 
       {/* Bottom Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+      <div className="responsive-grid-3">
         {/* Live Agents */}
         <div className="glass-card" style={{ padding: 20 }}>
           <div className="section-header">
