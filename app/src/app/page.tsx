@@ -6,7 +6,7 @@ import TopBar from '@/components/TopBar';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle, Globe, Briefcase, GitBranch } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle, Globe, Briefcase, GitBranch, Sun, Moon } from 'lucide-react';
 import { GoogleOAuthProvider, useGoogleOneTapLogin, GoogleLogin } from '@react-oauth/google';
 
 // Lazy load heavy components
@@ -105,7 +105,7 @@ const componentMap: Record<string, React.ComponentType> = {
 };
 
 function LoginScreenContent() {
-  const { login, theme } = useStore();
+  const { login, theme, toggleTheme } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -176,7 +176,10 @@ function LoginScreenContent() {
           <button onClick={() => setShowPolicy(true)} style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer' }}>Privacy</button>
         </nav>
 
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <button onClick={toggleTheme} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-primary)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}>
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
           <button onClick={() => scrollToSection('hero')} className="btn-primary" style={{ padding: '8px 20px', fontSize: 13 }}>
             Sign In / Demo →
           </button>
