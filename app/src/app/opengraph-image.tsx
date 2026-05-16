@@ -122,7 +122,7 @@ export default function Image() {
               background: 'linear-gradient(135deg, #a371f7, #58a6ff)',
               display: 'flex',
               alignItems: 'center',
-              justify: 'center',
+              justifyContent: 'center',
               color: 'white',
               fontWeight: 800,
               fontSize: 24,
