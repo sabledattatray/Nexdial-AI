@@ -197,18 +197,18 @@ function LoginScreenContent() {
           backgroundImage: `url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2000&auto=format&fit=crop')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: theme === 'dark' ? 'brightness(0.85) contrast(1.05)' : 'brightness(1) contrast(1.02)',
+          filter: theme === 'dark' ? 'brightness(0.85) contrast(1.05)' : 'brightness(0.8) contrast(1.05)',
           opacity: 1,
           transition: 'all 0.5s ease'
         }} />
-        {/* Ultra-Subtle Overlay: Preserves 100% Image Clarity while keeping Left Text Legible */}
+        {/* Premium Dark Slate Overlay in Light Mode for Moody Enterprise Aesthetic & White Text Pop */}
         <div style={{
           position: 'absolute',
           inset: 0,
           zIndex: 0,
           background: theme === 'dark' 
             ? 'linear-gradient(90deg, rgba(8,10,15,0.85) 0%, rgba(8,10,15,0.35) 45%, rgba(8,10,15,0.15) 100%), linear-gradient(180deg, transparent 0%, transparent 80%, rgba(8,10,15,1) 100%)' 
-            : 'linear-gradient(90deg, rgba(248,250,252,0.85) 0%, rgba(248,250,252,0.35) 45%, rgba(248,250,252,0.15) 100%), linear-gradient(180deg, transparent 0%, transparent 80%, rgba(248,250,252,1) 100%)',
+            : 'linear-gradient(90deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.6) 45%, rgba(15,23,42,0.35) 100%), linear-gradient(180deg, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.75) 85%, rgba(248,250,252,1) 100%)',
           transition: 'all 0.5s ease'
         }} />
 
@@ -216,10 +216,10 @@ function LoginScreenContent() {
           
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }}>
             <span className="badge badge-purple" style={{ marginBottom: 16, fontSize: 11 }}>🚀 NEXT-GEN TELEPHONY & AI COPILOT</span>
-            <h1 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: theme === 'light' ? '#000000' : 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 20 }}>
+            <h1 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: theme === 'light' ? '#ffffff' : 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 20 }}>
               Surgical AI Telephony for Enterprise Sales Teams.
             </h1>
-            <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: theme === 'light' ? '#000000' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 600 : 400, lineHeight: 1.6, marginBottom: 32 }}>
+            <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: theme === 'light' ? '#f1f5f9' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 500 : 400, lineHeight: 1.6, marginBottom: 32 }}>
               Scale your outbound campaigns with predictive pacing algorithms, real-time AI sentiment analysis, and ultra-low latency WebRTC integrations.
             </p>
 
@@ -230,7 +230,7 @@ function LoginScreenContent() {
                 'Omnichannel CRM with automated disposition tagging',
                 'Sub-400ms AI Voice Copilot & Real-Time Sentiment Scoring',
               ].map((feat, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: theme === 'light' ? '#000000' : 'var(--text-primary)', fontWeight: theme === 'light' ? 700 : 500 }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: theme === 'light' ? '#ffffff' : 'var(--text-primary)', fontWeight: theme === 'light' ? 600 : 500 }}>
                   <CheckCircle size={18} color="var(--accent-green)" style={{ flexShrink: 0 }} />
                   <span>{feat}</span>
                 </div>
