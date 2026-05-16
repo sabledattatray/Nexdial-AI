@@ -6,7 +6,7 @@ import TopBar from '@/components/TopBar';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle, Globe, Linkedin, Github } from 'lucide-react';
 import { GoogleOAuthProvider, useGoogleOneTapLogin, GoogleLogin } from '@react-oauth/google';
 
 // Lazy load heavy components
@@ -313,15 +313,15 @@ function LoginScreenContent() {
                 <p style={{ fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20 }}>
                   Senior Software Engineer and Data Strategy Consultant specializing in enterprise Business Intelligence, Asterisk PBX WebRTC telephony, and ultra-low latency Generative AI Copilot architectures. Founder & Lead Developer of NexDial AI.
                 </p>
-                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', fontSize: 13, fontWeight: 600 }}>
+                <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', fontSize: 13, fontWeight: 600 }}>
                   <a href="https://dattasable.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-blue)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    🌐 dattasable.com
+                    <Globe size={16} /> dattasable.com
                   </a>
                   <a href="https://linkedin.com/in/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    💼 LinkedIn
+                    <Linkedin size={16} /> LinkedIn
                   </a>
                   <a href="https://github.com/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    💻 GitHub (@sabledattatray)
+                    <Github size={16} /> GitHub
                   </a>
                 </div>
               </div>
