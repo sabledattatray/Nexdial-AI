@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nexdial.vercel.app"),
   title: "NexDial AI — Enterprise Call Center Platform",
   description: "AI-powered enterprise call center dialer with predictive dialing, omnichannel communication, and real-time analytics.",
   keywords: ["call center", "AI dialer", "predictive dialer", "contact center", "CRM"],
