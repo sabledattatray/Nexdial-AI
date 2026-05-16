@@ -6,7 +6,7 @@ import TopBar from '@/components/TopBar';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle, Globe, Linkedin, Github } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Shield, Cpu, Phone, BarChart3, Mail, Building, Users, Lock, FileText, Check, AlertCircle, Globe, Briefcase, GitBranch } from 'lucide-react';
 import { GoogleOAuthProvider, useGoogleOneTapLogin, GoogleLogin } from '@react-oauth/google';
 
 // Lazy load heavy components
@@ -318,10 +318,10 @@ function LoginScreenContent() {
                     <Globe size={16} /> dattasable.com
                   </a>
                   <a href="https://linkedin.com/in/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <Linkedin size={16} /> LinkedIn
+                    <Briefcase size={16} /> LinkedIn
                   </a>
                   <a href="https://github.com/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <Github size={16} /> GitHub
+                    <GitBranch size={16} /> GitHub
                   </a>
                 </div>
               </div>
