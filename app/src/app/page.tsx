@@ -188,25 +188,27 @@ function LoginScreenContent() {
 
       {/* Hero Section */}
       <section id="hero" style={{ position: 'relative', padding: '60px 32px', minHeight: 'calc(100vh - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        {/* Professional Call Center Background Image with Dynamic Gradient Overlay */}
+        {/* Professional Call Center Background Image */}
         <div style={{
           position: 'absolute',
           inset: 0,
           zIndex: 0,
+          backgroundColor: theme === 'dark' ? '#080a0f' : '#f8fafc',
           backgroundImage: `url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000&auto=format&fit=crop')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: theme === 'dark' ? 'brightness(0.35) grayscale(0.3)' : 'brightness(0.85) grayscale(0.15)',
-          opacity: theme === 'dark' ? 0.4 : 0.22,
+          filter: theme === 'dark' ? 'brightness(0.65) contrast(1.1)' : 'brightness(0.95) contrast(1.05)',
+          opacity: theme === 'dark' ? 0.75 : 0.65,
           transition: 'all 0.5s ease'
         }} />
+        {/* Elegant Dual-Gradient Overlay for Perfect Visibility & Text Contrast */}
         <div style={{
           position: 'absolute',
           inset: 0,
           zIndex: 0,
           background: theme === 'dark' 
-            ? 'linear-gradient(180deg, rgba(8,10,15,0.75) 0%, rgba(8,10,15,0.95) 100%)' 
-            : 'linear-gradient(180deg, rgba(248,250,252,0.75) 0%, rgba(248,250,252,0.95) 100%)',
+            ? 'linear-gradient(90deg, rgba(8,10,15,0.92) 0%, rgba(8,10,15,0.6) 50%, rgba(8,10,15,0.85) 100%), linear-gradient(180deg, rgba(8,10,15,0.2) 0%, rgba(8,10,15,0.95) 100%)' 
+            : 'linear-gradient(90deg, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.55) 50%, rgba(248,250,252,0.85) 100%), linear-gradient(180deg, rgba(248,250,252,0.2) 0%, rgba(248,250,252,0.95) 100%)',
           transition: 'all 0.5s ease'
         }} />
 
