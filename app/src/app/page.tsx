@@ -359,12 +359,36 @@ function LoginScreenContent() {
       </section>
 
       {/* Services Section */}
-      <section id="services" style={{ padding: '80px 32px', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+      <section id="services" style={{ position: 'relative', padding: '80px 32px', borderTop: '1px solid var(--border)', overflow: 'hidden' }}>
+        {/* Premium Call Center / Tech Support Infrastructure Background Image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          backgroundColor: theme === 'dark' ? '#080a0f' : '#f8fafc',
+          backgroundImage: `url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2000&auto=format&fit=crop')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: theme === 'dark' ? 'brightness(0.7) contrast(1.1)' : 'brightness(0.95) contrast(1.05)',
+          opacity: theme === 'dark' ? 0.6 : 0.5,
+          transition: 'all 0.5s ease'
+        }} />
+        {/* Surgical Dual-Gradient Overlay for Seamless Section Blending & Text Clarity */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          background: theme === 'dark' 
+            ? 'linear-gradient(180deg, rgba(8,10,15,1) 0%, rgba(8,10,15,0.65) 50%, rgba(8,10,15,1) 100%)' 
+            : 'linear-gradient(180deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.65) 50%, rgba(248,250,252,1) 100%)',
+          transition: 'all 0.5s ease'
+        }} />
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1280, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <span className="badge badge-purple" style={{ marginBottom: 12 }}>ENTERPRISE CAPABILITIES</span>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, letterSpacing: '-0.5px' }}>Our Services & Modules</h2>
-            <p style={{ fontSize: 16, color: 'var(--text-secondary)', marginTop: 12, maxWidth: 600, margin: '12px auto 0' }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: theme === 'light' ? '#000000' : 'var(--text-primary)', letterSpacing: '-0.5px' }}>Our Services & Modules</h2>
+            <p style={{ fontSize: 16, color: theme === 'light' ? '#000000' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 600 : 400, marginTop: 12, maxWidth: 600, margin: '12px auto 0' }}>
               A fully integrated suite of tools designed to optimize every stage of your outbound calling campaigns.
             </p>
           </div>
@@ -376,12 +400,12 @@ function LoginScreenContent() {
               { title: 'Surgical Lead Management', desc: 'Import CSV/Excel data, map custom fields, apply DNC filtering, and track lead scores with visual progress indicators.', icon: FileText },
               { title: 'Real-Time Analytics', desc: 'Granular hourly call volume charts, disposition breakdown pies, and custom CSV/JSON export capabilities for financial reporting.', icon: BarChart3 },
             ].map((srv, i) => (
-              <div key={i} className="glass-card" style={{ padding: 32, borderTop: `2px solid ${i % 2 === 0 ? 'var(--accent-blue)' : 'var(--accent-purple)'}` }}>
-                <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(163,113,247,0.1)', color: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+              <div key={i} className="glass-card" style={{ padding: 32, borderTop: `2px solid ${i % 2 === 0 ? 'var(--accent-blue)' : 'var(--accent-purple)'}`, background: 'var(--bg-card)', backdropFilter: 'blur(20px)' }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: i % 2 === 0 ? 'rgba(88,166,255,0.15)' : 'rgba(163,113,247,0.15)', color: i % 2 === 0 ? 'var(--accent-blue)' : 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
                   <srv.icon size={20} />
                 </div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 12 }}>{srv.title}</h3>
-                <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{srv.desc}</p>
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: theme === 'light' ? '#000000' : 'var(--text-primary)', marginBottom: 12 }}>{srv.title}</h3>
+                <p style={{ fontSize: 14, color: theme === 'light' ? '#000000' : 'var(--text-secondary)', fontWeight: theme === 'light' ? 600 : 400, lineHeight: 1.6 }}>{srv.desc}</p>
               </div>
             ))}
           </div>
