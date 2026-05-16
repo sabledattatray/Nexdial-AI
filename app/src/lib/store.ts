@@ -127,7 +127,7 @@ interface Notification {
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
-  isAuthenticated: true,
+  isAuthenticated: false,
   setIsAuthenticated: (val) => set({ isAuthenticated: val }),
   login: () => set({ isAuthenticated: true }),
   logout: () => set({ isAuthenticated: false }),
