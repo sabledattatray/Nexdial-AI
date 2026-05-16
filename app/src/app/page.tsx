@@ -253,44 +253,46 @@ function LoginScreenContent() {
               width: '100%', 
               maxWidth: 420, 
               padding: 32, 
-              background: theme === 'dark' ? 'rgba(15, 23, 42, 0.75)' : 'rgba(255, 255, 255, 0.85)',
+              background: theme === 'dark' ? 'rgba(15, 23, 42, 0.75)' : 'rgba(255, 255, 255, 0.92)',
               backdropFilter: 'blur(32px)',
               WebkitBackdropFilter: 'blur(32px)',
-              border: theme === 'dark' ? '1px solid rgba(88, 166, 255, 0.35)' : '1px solid rgba(226, 232, 240, 0.8)', 
-              boxShadow: theme === 'dark' ? '0 32px 80px rgba(0, 0, 0, 0.7), 0 0 32px rgba(88, 166, 255, 0.15)' : '0 24px 64px rgba(0, 0, 0, 0.08)',
+              border: theme === 'dark' ? '1px solid rgba(88, 166, 255, 0.35)' : '1px solid rgba(148, 163, 184, 0.4)', 
+              boxShadow: theme === 'dark' ? '0 32px 80px rgba(0, 0, 0, 0.7), 0 0 32px rgba(88, 166, 255, 0.15)' : '0 24px 64px rgba(0, 0, 0, 0.12)',
               borderRadius: 24
             }}>
               <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                <h2 style={{ fontSize: 24, fontWeight: 800, color: theme === 'dark' ? '#ffffff' : '#0f172a' }}>Access Workspace</h2>
-                <div style={{ fontSize: 13, color: theme === 'dark' ? '#94a3b8' : 'var(--text-muted)', marginTop: 4 }}>Sign in to your enterprise tenant dashboard</div>
+                <h2 style={{ fontSize: 24, fontWeight: 800, color: theme === 'dark' ? '#ffffff' : '#000000' }}>Access Workspace</h2>
+                <div style={{ fontSize: 13, color: theme === 'dark' ? '#94a3b8' : '#334155', marginTop: 4, fontWeight: 500 }}>Sign in to your enterprise tenant dashboard</div>
               </div>
 
               <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: theme === 'dark' ? '#cbd5e1' : 'var(--text-muted)', display: 'block', marginBottom: 6, letterSpacing: '0.5px' }}>WORK EMAIL</label>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: theme === 'dark' ? '#cbd5e1' : '#0f172a', display: 'block', marginBottom: 6, letterSpacing: '0.5px' }}>WORK EMAIL</label>
                   <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="name@company.com" className="input-field" style={{ 
                     fontSize: 13, 
                     padding: '12px 16px', 
-                    background: theme === 'dark' ? 'rgba(11, 15, 25, 0.6)' : 'rgba(255, 255, 255, 0.9)', 
-                    border: theme === 'dark' ? '1px solid rgba(100, 116, 139, 0.4)' : '1px solid rgba(203, 213, 225, 1)', 
-                    color: theme === 'dark' ? '#ffffff' : '#0f172a',
+                    background: theme === 'dark' ? 'rgba(11, 15, 25, 0.6)' : '#ffffff', 
+                    border: theme === 'dark' ? '1px solid rgba(100, 116, 139, 0.4)' : '1px solid rgba(148, 163, 184, 0.6)', 
+                    color: theme === 'dark' ? '#ffffff' : '#000000',
+                    fontWeight: 500,
                     borderRadius: 12,
-                    boxShadow: theme === 'dark' ? 'inset 0 2px 4px rgba(0,0,0,0.2)' : 'none'
+                    boxShadow: theme === 'dark' ? 'inset 0 2px 4px rgba(0,0,0,0.2)' : 'inset 0 1px 2px rgba(0,0,0,0.05)'
                   }} required />
                 </div>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <label style={{ fontSize: 11, fontWeight: 700, color: theme === 'dark' ? '#cbd5e1' : 'var(--text-muted)', letterSpacing: '0.5px' }}>PASSWORD</label>
-                    <a href="#" style={{ fontSize: 11, color: theme === 'dark' ? '#58a6ff' : 'var(--accent-blue)', textDecoration: 'none', fontWeight: 600 }}>Forgot password?</a>
+                    <label style={{ fontSize: 11, fontWeight: 700, color: theme === 'dark' ? '#cbd5e1' : '#0f172a', letterSpacing: '0.5px' }}>PASSWORD</label>
+                    <a href="#" style={{ fontSize: 11, color: theme === 'dark' ? '#58a6ff' : '#2563eb', textDecoration: 'none', fontWeight: 600 }}>Forgot password?</a>
                   </div>
                   <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••••••" className="input-field" style={{ 
                     fontSize: 13, 
                     padding: '12px 16px', 
-                    background: theme === 'dark' ? 'rgba(11, 15, 25, 0.6)' : 'rgba(255, 255, 255, 0.9)', 
-                    border: theme === 'dark' ? '1px solid rgba(100, 116, 139, 0.4)' : '1px solid rgba(203, 213, 225, 1)', 
-                    color: theme === 'dark' ? '#ffffff' : '#0f172a',
+                    background: theme === 'dark' ? 'rgba(11, 15, 25, 0.6)' : '#ffffff', 
+                    border: theme === 'dark' ? '1px solid rgba(100, 116, 139, 0.4)' : '1px solid rgba(148, 163, 184, 0.6)', 
+                    color: theme === 'dark' ? '#ffffff' : '#000000',
+                    fontWeight: 500,
                     borderRadius: 12,
-                    boxShadow: theme === 'dark' ? 'inset 0 2px 4px rgba(0,0,0,0.2)' : 'none'
+                    boxShadow: theme === 'dark' ? 'inset 0 2px 4px rgba(0,0,0,0.2)' : 'inset 0 1px 2px rgba(0,0,0,0.05)'
                   }} required />
                 </div>
 
@@ -300,9 +302,9 @@ function LoginScreenContent() {
               </form>
 
               <div style={{ display: 'flex', alignItems: 'center', marginBlock: 20 }}>
-                <div style={{ flex: 1, height: 1, background: theme === 'dark' ? 'rgba(100, 116, 139, 0.3)' : 'var(--border)' }} />
-                <span style={{ marginInline: 12, fontSize: 11, color: theme === 'dark' ? '#64748b' : 'var(--text-muted)', fontWeight: 700, letterSpacing: '1px' }}>OR</span>
-                <div style={{ flex: 1, height: 1, background: theme === 'dark' ? 'rgba(100, 116, 139, 0.3)' : 'var(--border)' }} />
+                <div style={{ flex: 1, height: 1, background: theme === 'dark' ? 'rgba(100, 116, 139, 0.3)' : 'rgba(148, 163, 184, 0.3)' }} />
+                <span style={{ marginInline: 12, fontSize: 11, color: theme === 'dark' ? '#64748b' : '#475569', fontWeight: 700, letterSpacing: '1px' }}>OR</span>
+                <div style={{ flex: 1, height: 1, background: theme === 'dark' ? 'rgba(100, 116, 139, 0.3)' : 'rgba(148, 163, 184, 0.3)' }} />
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
@@ -316,16 +318,16 @@ function LoginScreenContent() {
 
               <div style={{ 
                 padding: '14px 18px', 
-                background: theme === 'dark' ? 'rgba(88,166,255,0.12)' : 'rgba(37,99,235,0.08)', 
+                background: theme === 'dark' ? 'rgba(88,166,255,0.12)' : 'rgba(37,99,235,0.12)', 
                 borderRadius: 12, 
                 marginTop: 24, 
-                border: theme === 'dark' ? '1px solid rgba(88,166,255,0.25)' : '1px solid rgba(37,99,235,0.15)', 
+                border: theme === 'dark' ? '1px solid rgba(88,166,255,0.25)' : '1px solid rgba(37,99,235,0.3)', 
                 fontSize: 12, 
-                color: theme === 'dark' ? '#e2e8f0' : 'var(--text-secondary)', 
+                color: theme === 'dark' ? '#e2e8f0' : '#0f172a', 
                 textAlign: 'center', 
                 lineHeight: 1.5 
               }}>
-                💡 <span style={{ fontWeight: 700, color: theme === 'dark' ? '#58a6ff' : 'var(--accent-blue)' }}>Demo Mode Active</span>: Enter any work email and password or use Google One Tap to instantly access the live platform.
+                💡 <span style={{ fontWeight: 700, color: theme === 'dark' ? '#58a6ff' : '#2563eb' }}>Demo Mode Active</span>: Enter any work email and password or use Google One Tap to instantly access the live platform.
               </div>
             </div>
           </motion.div>
