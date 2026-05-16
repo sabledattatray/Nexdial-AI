@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  SUPERVISOR
+  AGENT
+}
+
+enum AgentStatus {
+  ONLINE
+  OFFLINE
+  CALLING
+  WRAP_UP
+  BREAK
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CALLBACK
+  CONVERTED
+  NOT_INTERESTED
+  DNC
+}
+
+enum CallStatus {
+  RINGING
+  CONNECTED
+  ENDED
+  FAILED
+  BUSY
+  VOICEMAIL
+}
+
+enum CallDirection {
+  INBOUND
+  OUTBOUND
+}
+
+model Tenant {
+  id             String     @id @default(uuid())
+  name           String
+  slug           String     @unique
+  subscriptionId String?
+  plan           String     @default("ENTERPRISE")
+  vapiPublicKey  String?
+  sipTrunkUrl    String?
+  openAiApiKey   String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  users          User[]
+  leads          Lead[]
+  campaigns      Campaign[]
+  calls          CallLog[]
+}
+
+model User {
+  id             String      @id @default(uuid())
+  tenantId       String
+  tenant         Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  email          String      @unique
+  passwordHash   String
+  name           String
+  role           Role        @default(AGENT)
+  status         AgentStatus @default(OFFLINE)
+  vapiAgentId    String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  calls          CallLog[]
+}
+
+model Campaign {
+  id             String     @id @default(uuid())
+  tenantId       String
+  tenant         Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name           String
+  dialerType     String     @default("predictive") // predictive | preview | manual
+  status         String     @default("active")     // active | paused | completed
+  totalLeads     Int        @default(0)
+  answeredCalls  Int        @default(0)
+  convertedLeads Int        @default(0)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  leads          Lead[]
+}
+
+model Lead {
+  id             String     @id @default(uuid())
+  tenantId       String
+  tenant         Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  campaignId     String?
+  campaign       Campaign?  @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  name           String
+  phone          String
+  email          String?
+  company        String?
+  status         LeadStatus @default(NEW)
+  score          Int        @default(50)
+  attempts       Int        @default(0)
+  notes          String?
+  lastContact    DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  calls          CallLog[]
+}
+
+model CallLog {
+  id             String        @id @default(uuid())
+  tenantId       String
+  tenant         Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  userId         String?
+  user           User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  leadId         String?
+  lead           Lead?         @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  vapiCallId     String?       @unique
+  direction      CallDirection @default(OUTBOUND)
+  status         CallStatus    @default(CONNECTED)
+  duration       Int           @default(0) // in seconds
+  recordingUrl   String?
+  disposition    String?
+  aiSummary      String?
+  startedAt      DateTime      @default(now())
+  endedAt        DateTime?
+
+  transcripts    Transcript[]
+}
+
+model Transcript {
+  id             String   @id @default(uuid())
+  callId         String
+  call           CallLog  @relation(fields: [callId], references: [id], onDelete: Cascade)
+  role           String   // user | assistant | system
+  text           String
+  timestamp      String
+  createdAt      DateTime @default(now())
+}
