@@ -296,6 +296,38 @@ function LoginScreenContent() {
               </div>
             ))}
           </div>
+
+          {/* Lead Architect & Developer Profile */}
+          <div className="glass-card" style={{ padding: 40, marginTop: 48, border: '1px solid rgba(88,166,255,0.3)', background: 'var(--bg-card)', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, right: 0, width: 200, height: 200, background: 'radial-gradient(circle, rgba(88,166,255,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'center' }}>
+              <div style={{ width: 80, height: 80, borderRadius: 20, background: 'linear-gradient(135deg, #a371f7, #58a6ff)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 800, boxShadow: '0 12px 32px rgba(88,166,255,0.3)' }}>
+                DS
+              </div>
+              <div style={{ flex: 1, minWidth: 280 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
+                  <h3 style={{ fontSize: 24, fontWeight: 800 }}>Datta Sable</h3>
+                  <span className="badge badge-blue">Lead AI & Telephony Architect</span>
+                  <span className="badge badge-purple">BI & Data Strategy Expert</span>
+                </div>
+                <p style={{ fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20 }}>
+                  Senior Software Engineer and Data Strategy Consultant specializing in enterprise Business Intelligence, Asterisk PBX WebRTC telephony, and ultra-low latency Generative AI Copilot architectures. Founder & Lead Developer of NexDial AI.
+                </p>
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', fontSize: 13, fontWeight: 600 }}>
+                  <a href="https://dattasable.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-blue)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    🌐 dattasable.com
+                  </a>
+                  <a href="https://linkedin.com/in/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    💼 LinkedIn
+                  </a>
+                  <a href="https://github.com/sabledattatray" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    💻 GitHub (@sabledattatray)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -379,7 +411,7 @@ function LoginScreenContent() {
         </div>
 
         <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>
-          © 2026 NexDial AI. All rights reserved. Built for enterprise call centers.
+          © 2026 NexDial AI. Designed & Developed by <a href="https://dattasable.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-blue)', textDecoration: 'none', fontWeight: 600 }}>Datta Sable</a>. All rights reserved.
         </div>
 
         <div style={{ display: 'flex', gap: 24, fontSize: 13, fontWeight: 500 }}>
