@@ -123,6 +123,7 @@ function LoginScreenContent() {
     onError: () => {
       console.log('Google One Tap Login Failed');
     },
+    use_fedcm_for_prompt: false,
   });
 
   const handleLogin = (e: React.FormEvent) => {
@@ -256,6 +257,7 @@ function LoginScreenContent() {
                   onSuccess={credentialResponse => { toast.success('Successfully logged in with Google!'); login(); }}
                   onError={() => toast.error('Google Login Failed')}
                   theme={theme === 'light' ? 'outline' : 'filled_black'}
+                  use_fedcm_for_prompt={false}
                 />
               </div>
 
